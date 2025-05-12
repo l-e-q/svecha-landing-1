@@ -1,0 +1,186 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --muted: 200 15% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --primary: 220 15% 16%; /* #212529 - тёмно-серый, почти чёрный (основной цвет) */
+  --primary-foreground: 210 40% 98%;
+  --secondary: 220 13% 55%; /* #868e96 - приглушенный серый (вторичный цвет) */
+  --secondary-foreground: 210 40% 98%;
+  --accent: 220 14% 75%; /* #adb5bd - светло-серый (для акцентов) */
+  --accent-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 220 15% 16%;
+  --radius: 0.2rem; /* Уменьшены радиусы для более минималистичного вида */
+  
+  /* Text color */
+  --text: 220 15% 16%; /* Тёмно-серый для текста */
+  
+  /* Chart colors */
+  --chart-1: 220 15% 16%;
+  --chart-2: 220 13% 55%;
+  --chart-3: 220 14% 75%;
+  --chart-4: 220 15% 35%;
+  --chart-5: 214.3 31.8% 91.4%;
+  
+  /* Sidebar colors */
+  --sidebar-background: 0 0% 100%;
+  --sidebar-foreground: 222.2 84% 4.9%;
+  --sidebar-primary: 220 15% 16%;
+  --sidebar-primary-foreground: 210 40% 98%;
+  --sidebar-accent: 220 14% 75%;
+  --sidebar-accent-foreground: 222.2 84% 4.9%;
+  --sidebar-border: 214.3 31.8% 91.4%;
+  --sidebar-ring: 220 15% 16%;
+}
+
+.dark {
+  --background: 220 20% 5%;
+  --foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --popover: 220 20% 5%;
+  --popover-foreground: 210 40% 98%;
+  --card: 220 20% 5%;
+  --card-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --primary: 220 15% 75%; /* Светло-серый */
+  --primary-foreground: 220 20% 5%;
+  --secondary: 220 15% 45%; /* Средне-серый */
+  --secondary-foreground: 210 40% 98%;
+  --accent: 220 15% 25%; /* Темно-серый */
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 220 15% 75%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', sans-serif;
+    color: hsl(var(--text));
+  }
+}
+
+@layer components {
+  .hero-gradient {
+    background: linear-gradient(135deg, rgba(33, 37, 41, 0.03) 0%, rgba(134, 142, 150, 0.05) 100%);
+  }
+  
+  .gradient-text {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-secondary to-accent font-normal;
+  }
+  
+  /* Стабильная высота для анимированных компонентов */
+  .motion-component {
+    @apply min-h-[100%] h-full flex flex-col;
+    box-sizing: border-box;
+    transition: box-shadow 0.3s ease, border-color 0.3s ease;
+    position: relative; /* Для корректного позиционирования эффектов */
+    
+    /* Тени встроены в дизайн, но настроены с нулевым размытием по умолчанию */
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.05);
+  }
+  
+  .feature-card {
+    @apply transition-shadow duration-300;
+    /* Встроенная лёгкая тень по умолчанию */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .feature-card:hover {
+    /* Плавная тень со всех сторон, более темная и большая */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .service-card {
+    @apply transition-shadow duration-300 overflow-hidden;
+    /* Встроенная лёгкая тень по умолчанию */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .service-card:hover {
+    /* Плавная тень со всех сторон, более темная и большая */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .service-card img {
+    @apply transition-opacity duration-300;
+  }
+  
+  .service-card:hover img {
+    @apply opacity-95;
+  }
+  
+  /* Дополнительные стили для рубрики клининга на кладбищах */
+  .memorial-card {
+    @apply bg-white rounded-md border border-muted p-5 transition-shadow duration-300;
+    /* Встроенная лёгкая тень по умолчанию */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .memorial-card:hover {
+    /* Плавная тень со всех сторон, более темная и большая */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Стили для карточек пакетов услуг */
+  .pricing-card {
+    @apply transition-shadow duration-300;
+    /* Встроенная лёгкая тень по умолчанию */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .pricing-card:hover {
+    /* Плавная тень со всех сторон, более темная и большая */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  }
+  
+  .icon-box {
+    @apply w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center text-secondary mb-4;
+  }
+  
+  /* Стиль для иконки в карточке цифрового мемориала */
+  .bg-white\/90 {
+    background-color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.8s ease forwards;
+}
